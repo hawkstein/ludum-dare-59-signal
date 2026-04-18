@@ -25,6 +25,10 @@ var _active: bool = false
 func _ready() -> void:
 	set_process(false)
 
+func clear() -> void:
+	_locked_lines.clear()
+	transmitter.visible = false
+
 func show_map(_target:Vector2, _player:Vector2) -> void:
 	receiver.position = _player
 	transmitter.position = _target
