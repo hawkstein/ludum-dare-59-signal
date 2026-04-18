@@ -26,33 +26,32 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _read_input() -> void:
+	var input_direction := false
 	if Input.is_action_just_pressed("up"):
-		if current_direction == Vector2i.UP:
-			speed = 2.0
-		else:
-			speed = 1.0
 		desired_direction = Vector2i.UP
+		input_direction = true
 	elif Input.is_action_just_pressed("down"):
-		if current_direction == Vector2i.DOWN:
-			speed = 2.0
-		else:
-			speed = 1.0
 		desired_direction = Vector2i.DOWN
+		input_direction = true
 	elif Input.is_action_just_pressed("left"):
-		if current_direction == Vector2i.LEFT:
-			speed = 2.0
-		else:
-			speed = 1.0
 		desired_direction = Vector2i.LEFT
+		input_direction = true
 	elif Input.is_action_just_pressed("right"):
-		if current_direction == Vector2i.RIGHT:
-			speed = 2.0
-		else:
-			speed = 1.0
 		desired_direction = Vector2i.RIGHT
+		input_direction = true
 	
-	current_direction = desired_direction
-	# TODO: add speed up or brake code i.e if you tap the same direction speed up, tap the opposite to brake
+	if input_direction and current_direction == desired_direction:
+		speed = 2.0
+	
+	if input_direction and current_direction == -desired_direction:
+		if speed >= 2.0:
+			speed = 1.0
+			desired_direction = current_direction
+		else:
+			desired_direction = Vector2i.ZERO
+			current_direction = Vector2i.ZERO
+	else:	
+		current_direction = desired_direction
 
 func _update_sprite() -> void:
 	if current_direction == Vector2i.UP:
@@ -65,6 +64,7 @@ func _update_sprite() -> void:
 		animated_sprite.flip_h = false
 	elif current_direction == Vector2i.DOWN:
 		animated_sprite.play("down")
+	# noop: If we've stopped (ZERO), stay the same
 
 func _update_particles() -> void:
 	if speed >= 2.0:
@@ -91,9 +91,10 @@ func collect_transmitter() -> void:
 	pass
 
 func stop_moving() -> void:
-	current_direction = Vector2.ZERO
-	desired_direction = Vector2.ZERO
+	current_direction = Vector2i.ZERO
+	desired_direction = Vector2i.ZERO
 	active = false
+	speed = 1.0
 
 func start_moving() -> void:
 	active = true
