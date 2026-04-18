@@ -6,6 +6,9 @@ extends Node2D
 @onready var player: CharacterBody2D = $Player
 @onready var triangulation_map: TriangulationMap = $MapLayer/TriangulationMap
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
+@onready var message_layer: MessageLayer = $MessageLayer
+
+
 const TRANSMITTER = preload("uid://c7v1iqui8bx7a")
 var _transmitter_location := Vector2.ZERO
 var _transmitters_found := 0
@@ -68,6 +71,8 @@ func _on_transmitter_found() -> void:
 	else:
 		_transmitter_location = _next_transmitter_location()
 		triangulation_map.clear()
+		var info := {"num_transmitters": target_to_find - _transmitters_found}
+		message_layer.display_message("Wolfgang: Nice work! We only need to find {num_transmitters} more".format(info))
 
 func _switch_to_win() -> void:
 	get_tree().change_scene_to_file("res://narrative/win.tscn")
