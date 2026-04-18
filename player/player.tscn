@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://byv18ixcxuu72" path="res://player/player.png" id="2_rkbax"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqu6x"]
-size = Vector2(32, 32)
+size = Vector2(24, 20)
 
 [sub_resource type="Gradient" id="Gradient_rkbax"]
 offsets = PackedFloat32Array(0, 0.9836066)
@@ -63,6 +63,7 @@ animations = [{
 script = ExtResource("1_oul6g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1514773918]
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_kqu6x")
 
 [node name="BikeShapes" type="Node2D" parent="." unique_id=1381430059]

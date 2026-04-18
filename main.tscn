@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bnq1urer87s81" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="Texture2D" uid="uid://biquxa6irwrvo" path="res://world/tileset.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://b42be3axcv1gi" path="res://player/player.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d2ag0ing1neyp" path="res://world/man-in-black.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bp7i41v83uu7d" path="res://map/triangulation-map.tscn" id="5_lquwl"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_1bvp3"]
@@ -66,6 +67,134 @@ position = Vector2(112, 144)
 visible = false
 
 [node name="TriangulationMap" parent="MapLayer" unique_id=1199848996 instance=ExtResource("5_lquwl")]
+
+[node name="MIB" type="Node2D" parent="." unique_id=1108705490]
+
+[node name="ManInBlack" parent="MIB" unique_id=411042188 instance=ExtResource("5_7mycd")]
+position = Vector2(506, 206)
+
+[node name="ManInBlack2" parent="MIB" unique_id=925773998 instance=ExtResource("5_7mycd")]
+position = Vector2(33, 496)
+
+[node name="ManInBlack3" parent="MIB" unique_id=1941331492 instance=ExtResource("5_7mycd")]
+position = Vector2(-682, 370)
+
+[node name="ManInBlack4" parent="MIB" unique_id=1566894205 instance=ExtResource("5_7mycd")]
+position = Vector2(-376, -153)
+
+[node name="ManInBlack5" parent="MIB" unique_id=2042693250 instance=ExtResource("5_7mycd")]
+position = Vector2(-676, -479)
+
+[node name="ManInBlack6" parent="MIB" unique_id=1565786403 instance=ExtResource("5_7mycd")]
+position = Vector2(-1517, -122)
+
+[node name="ManInBlack7" parent="MIB" unique_id=1461990663 instance=ExtResource("5_7mycd")]
+position = Vector2(-1729, -490)
+
+[node name="ManInBlack8" parent="MIB" unique_id=1307266438 instance=ExtResource("5_7mycd")]
+position = Vector2(-1468, -903)
+
+[node name="ManInBlack9" parent="MIB" unique_id=738105442 instance=ExtResource("5_7mycd")]
+position = Vector2(-236, -848)
+
+[node name="ManInBlack10" parent="MIB" unique_id=609380864 instance=ExtResource("5_7mycd")]
+position = Vector2(770, -639)
+
+[node name="ManInBlack11" parent="MIB" unique_id=1250802020 instance=ExtResource("5_7mycd")]
+position = Vector2(1001, -1188)
+
+[node name="ManInBlack12" parent="MIB" unique_id=1240302542 instance=ExtResource("5_7mycd")]
+position = Vector2(621, -907)
+
+[node name="ManInBlack13" parent="MIB" unique_id=287690179 instance=ExtResource("5_7mycd")]
+position = Vector2(719, -189)
+
+[node name="ManInBlack14" parent="MIB" unique_id=1461205835 instance=ExtResource("5_7mycd")]
+position = Vector2(389, -560)
+
+[node name="ManInBlack15" parent="MIB" unique_id=1769580926 instance=ExtResource("5_7mycd")]
+position = Vector2(997, 384)
+
+[node name="ManInBlack16" parent="MIB" unique_id=263762965 instance=ExtResource("5_7mycd")]
+position = Vector2(997, 961)
+
+[node name="ManInBlack17" parent="MIB" unique_id=276704920 instance=ExtResource("5_7mycd")]
+position = Vector2(275, 987)
+
+[node name="ManInBlack18" parent="MIB" unique_id=2127689031 instance=ExtResource("5_7mycd")]
+position = Vector2(-673, 871)
+
+[node name="ManInBlack39" parent="MIB" unique_id=823034490 instance=ExtResource("5_7mycd")]
+position = Vector2(-1247, 513)
+
+[node name="ManInBlack40" parent="MIB" unique_id=846547283 instance=ExtResource("5_7mycd")]
+position = Vector2(-1514, 968)
+
+[node name="ManInBlack41" parent="MIB" unique_id=1489117153 instance=ExtResource("5_7mycd")]
+position = Vector2(-1507, 359)
+
+[node name="ManInBlack42" parent="MIB" unique_id=346185186 instance=ExtResource("5_7mycd")]
+position = Vector2(-1507, 359)
+
+[node name="ManInBlack19" parent="MIB" unique_id=1156431815 instance=ExtResource("5_7mycd")]
+position = Vector2(-1058, 1354)
+
+[node name="ManInBlack20" parent="MIB" unique_id=2101971741 instance=ExtResource("5_7mycd")]
+position = Vector2(-1923, 1036)
+
+[node name="ManInBlack21" parent="MIB" unique_id=570022545 instance=ExtResource("5_7mycd")]
+position = Vector2(-2270, 610)
+
+[node name="ManInBlack22" parent="MIB" unique_id=1008107278 instance=ExtResource("5_7mycd")]
+position = Vector2(-2027, 258)
+
+[node name="ManInBlack23" parent="MIB" unique_id=1099294729 instance=ExtResource("5_7mycd")]
+position = Vector2(-1712, 1662)
+
+[node name="ManInBlack24" parent="MIB" unique_id=546838722 instance=ExtResource("5_7mycd")]
+position = Vector2(165, 1384)
+
+[node name="ManInBlack25" parent="MIB" unique_id=368414119 instance=ExtResource("5_7mycd")]
+position = Vector2(1633, 1356)
+
+[node name="ManInBlack26" parent="MIB" unique_id=714760127 instance=ExtResource("5_7mycd")]
+position = Vector2(1835, 678)
+
+[node name="ManInBlack27" parent="MIB" unique_id=1142795631 instance=ExtResource("5_7mycd")]
+position = Vector2(1539, 568)
+
+[node name="ManInBlack28" parent="MIB" unique_id=764157220 instance=ExtResource("5_7mycd")]
+position = Vector2(2258, 272)
+
+[node name="ManInBlack29" parent="MIB" unique_id=2072958855 instance=ExtResource("5_7mycd")]
+position = Vector2(1557, -144)
+
+[node name="ManInBlack30" parent="MIB" unique_id=1384989478 instance=ExtResource("5_7mycd")]
+position = Vector2(1628, -470)
+
+[node name="ManInBlack31" parent="MIB" unique_id=839563890 instance=ExtResource("5_7mycd")]
+position = Vector2(1911, -773)
+
+[node name="ManInBlack32" parent="MIB" unique_id=1458343704 instance=ExtResource("5_7mycd")]
+position = Vector2(2478, -959)
+
+[node name="ManInBlack33" parent="MIB" unique_id=1401646368 instance=ExtResource("5_7mycd")]
+position = Vector2(1635, -863)
+
+[node name="ManInBlack34" parent="MIB" unique_id=638880005 instance=ExtResource("5_7mycd")]
+position = Vector2(2294, 952)
+
+[node name="ManInBlack35" parent="MIB" unique_id=1825378605 instance=ExtResource("5_7mycd")]
+position = Vector2(2264, 1343)
+
+[node name="ManInBlack36" parent="MIB" unique_id=1988890960 instance=ExtResource("5_7mycd")]
+position = Vector2(1224, 1244)
+
+[node name="ManInBlack37" parent="MIB" unique_id=1822102518 instance=ExtResource("5_7mycd")]
+position = Vector2(1272, 1676)
+
+[node name="ManInBlack38" parent="MIB" unique_id=999803681 instance=ExtResource("5_7mycd")]
+position = Vector2(1272, 1676)
 
 [connection signal="map_closed" from="MapLayer/TriangulationMap" to="." method="_on_triangulation_map_map_closed"]
 [connection signal="signal_triangulated" from="MapLayer/TriangulationMap" to="." method="_on_triangulation_map_signal_triangulated"]
