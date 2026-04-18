@@ -7,7 +7,11 @@ var speed := 1.0
 var current_direction:= Vector2i.ZERO
 var desired_direction:= Vector2i.ZERO
 
+var active := true
+
 func _physics_process(_delta: float) -> void:
+	if not active:
+		return
 	_read_input()
 	velocity = Vector2(current_direction) * speed * base_velocity
 	move_and_slide()
@@ -48,3 +52,11 @@ func reset() -> void:
 func collect_transmitter() -> void:
 #	TODO: add collection code when player is expected to collect multiple transmitters
 	pass
+
+func stop_moving() -> void:
+	current_direction = Vector2.ZERO
+	desired_direction = Vector2.ZERO
+	active = false
+
+func start_moving() -> void:
+	active = true
