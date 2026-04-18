@@ -1,3 +1,25 @@
 [gd_scene format=3 uid="uid://b42be3axcv1gi"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqu6x"]
+size = Vector2(32, 32)
+
 [node name="Player" type="CharacterBody2D" unique_id=390508017]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1514773918]
+shape = SubResource("RectangleShape2D_kqu6x")
+
+[node name="BikeShapes" type="Node2D" parent="." unique_id=1381430059]
+
+[node name="Polygon2D" type="Polygon2D" parent="BikeShapes" unique_id=121179325]
+polygon = PackedVector2Array(-4, -6, -1, -14, 4, -15, 6, -2, 14, -1, 14, 3, 7, 3, 8, 11, 2, 4, -12, 10, -4, 2)
+
+[node name="Wheel" type="Polygon2D" parent="BikeShapes" unique_id=287661379]
+color = Color(0.16467533, 0.18131101, 0.42049414, 1)
+polygon = PackedVector2Array(9, 7, 6, 7, 4, 7, 3, 8, 2, 11, 2, 12, 5, 15, 6, 15, 10, 14, 12, 13, 12, 11, 12, 9)
+
+[node name="Wheel2" type="Polygon2D" parent="BikeShapes" unique_id=855789616]
+position = Vector2(-16, 0)
+color = Color(0.16467533, 0.18131101, 0.42049414, 1)
+polygon = PackedVector2Array(9, 7, 6, 7, 4, 7, 3, 8, 2, 11, 2, 12, 5, 15, 6, 15, 10, 14, 12, 13, 12, 11, 12, 9)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=63924835]
