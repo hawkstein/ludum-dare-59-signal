@@ -13,11 +13,6 @@ polygon = PackedVector2Array(0, -2, -2, 2, 2, 2)
 color = Color(0.4627451, 0.78039217, 0.23137255, 0.5568628)
 polygon = PackedVector2Array(0, -4, -4, 3, 5, 3)
 
-[node name="Line2D" type="Line2D" parent="." unique_id=2005043489]
-points = PackedVector2Array(3, -8, 0, -13, -12, 7, 13, 7, 3, -8)
-width = 1.0
-default_color = Color(0.4627451, 0.78039217, 0.23137255, 0.72156864)
-
 [node name="Area2D" type="Area2D" parent="." unique_id=368745730]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1337059015]
@@ -25,4 +20,9 @@ position = Vector2(0, 1)
 scale = Vector2(0.375, 0.375)
 polygon = PackedVector2Array(0, -13, 13.333334, 5.333333, -10.666667, 5.333333)
 
+[node name="Timer" type="Timer" parent="." unique_id=1287269677]
+wait_time = 5.0
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

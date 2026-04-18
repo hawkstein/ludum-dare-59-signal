@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cog58bmw7p2r7"]
+
+[ext_resource type="Script" uid="uid://bml5mnm3fjbx0" path="res://world/transmitter_pulse.gd" id="1_1qvpy"]
+
+[node name="TransmitterPulse" type="Node2D" unique_id=488310867]
+script = ExtResource("1_1qvpy")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1633787276]
+points = PackedVector2Array(3, -8, 0, -13, -12, 7, 13, 7, 3, -8)
+width = 0.5
+default_color = Color(0.4627451, 0.78039217, 0.23137255, 0.72156864)
