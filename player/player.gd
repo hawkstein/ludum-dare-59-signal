@@ -44,3 +44,7 @@ func _read_input() -> void:
 func reset() -> void:
 #	TODO: clear any data for this attempt
 	pass
+
+func collect_transmitter() -> void:
+#	TODO: add collection code when player is expected to collect multiple transmitters
+	pass

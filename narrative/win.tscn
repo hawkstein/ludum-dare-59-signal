@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://cr5gbuef8h0xo"]
+
+[ext_resource type="Script" uid="uid://buvklx2ytn3ul" path="res://narrative/win.gd" id="1_yn1cq"]
+
+[node name="Win" type="Control" unique_id=413128149]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yn1cq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1956197034]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="." unique_id=1611848825]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 158.0
+offset_right = 356.0
+offset_bottom = 189.0
+text = "Play again"
+
+[node name="Label" type="Label" parent="." unique_id=1415187833]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 102.0
+offset_right = 394.0
+offset_bottom = 125.0
+text = "Well done! You won!"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
