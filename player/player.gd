@@ -40,3 +40,7 @@ func _read_input() -> void:
 	
 	current_direction = desired_direction
 	# TODO: add speed up or brake code i.e if you tap the same direction speed up, tap the opposite to brake
+
+func reset() -> void:
+#	TODO: clear any data for this attempt
+	pass

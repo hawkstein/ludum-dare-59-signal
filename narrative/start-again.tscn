@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://byn7h777cq2yv"]
+
+[ext_resource type="Script" uid="uid://bkpo86pha32sl" path="res://narrative/start_again.gd" id="1_tg802"]
+
+[node name="StartAgain" type="Control" unique_id=828071294]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tg802")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2132935385]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Button" type="Button" parent="." unique_id=774554650]
+layout_mode = 0
+offset_left = 268.0
+offset_top = 146.0
+offset_right = 360.0
+offset_bottom = 177.0
+text = "Start again"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
