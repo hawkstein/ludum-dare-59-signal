@@ -18,6 +18,7 @@ var _transmitters_found := 0
 func _ready() -> void:
 	map_layer.visible = false
 	_transmitter_location = _next_transmitter_location()
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _next_transmitter_location() -> Vector2:
 	var used_cells := tile_map_layer.get_used_cells()
