@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cn5wdpijcbl6k" path="res://map/receiver.png" id="3_qu30w"]
 [ext_resource type="Texture2D" uid="uid://cbmtbdw8nf5nn" path="res://map/transmitter.png" id="4_npiq4"]
 [ext_resource type="AudioStream" uid="uid://cosfie3v1rr8o" path="res://map/static-loop.mp3" id="5_npiq4"]
+[ext_resource type="Texture2D" uid="uid://byv18ixcxuu72" path="res://player/player.png" id="6_ypcfj"]
 
 [node name="TriangulationMap" type="Control" unique_id=1199848996]
 layout_mode = 3
@@ -44,9 +45,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_bd66r")
 
-[node name="Receiver" type="Sprite2D" parent="MarginContainer/Panel" unique_id=494864353]
-texture = ExtResource("3_qu30w")
-
 [node name="Transmitter" type="Sprite2D" parent="MarginContainer/Panel" unique_id=490069385]
 visible = false
 texture = ExtResource("4_npiq4")
@@ -72,6 +70,15 @@ theme_override_constants/margin_bottom = 5
 [node name="Label" type="Label" parent="MarginContainer/Panel/PanelContainer/MarginContainer" unique_id=1670149366]
 layout_mode = 2
 text = "Left and right to direct scan - Space to lock line, M closes map"
+
+[node name="Receiver" type="Node2D" parent="MarginContainer/Panel" unique_id=1854793565]
+
+[node name="Circle" type="Sprite2D" parent="MarginContainer/Panel/Receiver" unique_id=494864353]
+texture = ExtResource("3_qu30w")
+
+[node name="Player" type="Sprite2D" parent="MarginContainer/Panel/Receiver" unique_id=1200091250]
+texture = ExtResource("6_ypcfj")
+hframes = 9
 
 [node name="StaticLoop" type="AudioStreamPlayer" parent="." unique_id=896589900]
 stream = ExtResource("5_npiq4")

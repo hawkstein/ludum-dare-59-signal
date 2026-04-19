@@ -22,9 +22,10 @@ var _active: bool = false
 var _too_close: bool = false
 
 @onready var canvas: Control = $MarginContainer/Panel/Canvas
-@onready var receiver: Sprite2D = $MarginContainer/Panel/Receiver
+@onready var receiver: Node2D = $MarginContainer/Panel/Receiver
 @onready var transmitter: Sprite2D = $MarginContainer/Panel/Transmitter
 @onready var static_loop: AudioStreamPlayer = $StaticLoop
+@onready var player: Sprite2D = $MarginContainer/Panel/Receiver/Player
 
 func _ready() -> void:
 	set_process(false)
@@ -39,6 +40,10 @@ func show_map(_target:Vector2, _player:Vector2, direction:Vector2i) -> void:
 	_target_map_position = _target
 	_receiver_map_position = _player
 	_current_angle = Vector2(direction).angle()
+	if direction == Vector2i.LEFT:
+		player.flip_v = true
+	else:
+		player.flip_v = false
 	receiver.rotation = _current_angle
 	_active = true
 	_too_close = false
