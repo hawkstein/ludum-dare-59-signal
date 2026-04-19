@@ -21,16 +21,19 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _next_transmitter_location() -> Vector2:
-	var used_cells := tile_map_layer.get_used_cells()
-	used_cells.shuffle()
+	var location:Vector2 = Vector2.ZERO
+	while location == Vector2.ZERO:
+		var rect := Rect2(-2336, -1248, 4960, 2912)
+		# TODO: do the rect calc properly
+		var random_point := Vector2(
+			randf_range(rect.position.x, rect.end.x),
+			randf_range(rect.position.y, rect.end.y)
+		)
+		var tile_coords := tile_map_layer.local_to_map(tile_map_layer.to_local(random_point))
+		if _tile_without_collision(tile_coords):
+			location = random_point
+	return location
 
-	for cell in used_cells:
-		var tile_data := tile_map_layer.get_cell_tile_data(cell)
-		if tile_data and tile_data.get_collision_polygons_count(0) == 0:
-			return to_global(tile_map_layer.map_to_local(cell))
-
-	push_error("Could not find a tile")
-	return Vector2.ZERO
 	
 func world_to_map(world_pos: Vector2) -> Vector2:
 	var used_rect := tile_map_layer.get_used_rect()
