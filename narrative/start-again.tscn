@@ -20,12 +20,40 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Button" type="Button" parent="." unique_id=774554650]
-layout_mode = 0
-offset_left = 268.0
-offset_top = 146.0
-offset_right = 360.0
-offset_bottom = 177.0
-text = "Start again"
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1480090241]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.5
+offset_right = 133.5
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=822060382]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=824204985]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "You were caught!"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1542725087]
+layout_mode = 2
+text = "The Men In Black take you back home!"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=674797418]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=774554650]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Enter or space to start again"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

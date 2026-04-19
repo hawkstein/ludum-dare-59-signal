@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cr5gbuef8h0xo"]
 
 [ext_resource type="Script" uid="uid://buvklx2ytn3ul" path="res://narrative/win.gd" id="1_yn1cq"]
+[ext_resource type="PackedScene" uid="uid://c7v1iqui8bx7a" path="res://world/transmitter.tscn" id="2_h0le5"]
 
 [node name="Win" type="Control" unique_id=413128149]
 layout_mode = 3
@@ -22,18 +23,38 @@ color = Color(0, 0, 0, 1)
 
 [node name="Button" type="Button" parent="." unique_id=1611848825]
 layout_mode = 0
-offset_left = 269.0
-offset_top = 158.0
-offset_right = 356.0
-offset_bottom = 189.0
-text = "Play again"
+offset_left = 200.0
+offset_top = 290.0
+offset_right = 422.0
+offset_bottom = 321.0
+text = "Enter or space to play again"
 
 [node name="Label" type="Label" parent="." unique_id=1415187833]
 layout_mode = 0
-offset_left = 237.0
-offset_top = 102.0
-offset_right = 394.0
-offset_bottom = 125.0
-text = "Well done! You won!"
+offset_left = 139.0
+offset_top = 46.0
+offset_right = 515.0
+offset_bottom = 69.0
+text = "Well done! You found all the alien transmissions!"
+
+[node name="Transmitter" parent="." unique_id=1254927253 instance=ExtResource("2_h0le5")]
+position = Vector2(321, 182.00002)
+rotation = 0.0006282487
+
+[node name="Label2" type="Label" parent="." unique_id=73581198]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 110.0
+offset_right = 528.0
+offset_bottom = 133.0
+text = "Wolfgang, Darren & Ben's adventure is just beginning"
+
+[node name="Label3" type="Label" parent="." unique_id=1931661423]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 225.0
+offset_right = 548.0
+offset_bottom = 248.0
+text = "They decode the mysterious signal and make first contact."
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
