@@ -31,7 +31,6 @@ func _draw_scan_line() -> void:
 	var thickness := _map.get_scan_thickness()
 	var lockable := _map.is_lockable()
 
-	# TODO: Audio feedback
 	var t := inverse_lerp(_map.min_line_thickness, _map.max_line_thickness, thickness)
 	var color: Color
 	if lockable:

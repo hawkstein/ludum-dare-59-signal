@@ -21,6 +21,7 @@ var _active: bool = false
 @onready var canvas: Control = $MarginContainer/Panel/Canvas
 @onready var receiver: Sprite2D = $MarginContainer/Panel/Receiver
 @onready var transmitter: Sprite2D = $MarginContainer/Panel/Transmitter
+@onready var static_loop: AudioStreamPlayer = $StaticLoop
 
 func _ready() -> void:
 	set_process(false)
@@ -38,11 +39,14 @@ func show_map(_target:Vector2, _player:Vector2) -> void:
 	_active = true
 	set_process(true)
 	canvas.queue_redraw()
+	if _locked_lines.size() < _required_lines:
+		static_loop.play()
 
 
 func hide_map() -> void:
 	_active = false
 	set_process(false)
+	static_loop.stop()
 
 func _process(delta: float) -> void:
 	if not _active:
@@ -54,11 +58,15 @@ func _process(delta: float) -> void:
 			rotation_input -= 1.0
 		if Input.is_action_pressed("right"):
 			rotation_input += 1.0
-
+		
 		if rotation_input != 0.0:
 			_current_angle += deg_to_rad(rotate_speed * rotation_input * delta)
 			receiver.rotation = _current_angle
 			canvas.queue_redraw()
+		
+		var diff_deg := rad_to_deg(get_angle_diff_abs())
+		var volume_clamped := clampf(diff_deg / thickness_falloff_angle, 0.0, 1.0)
+		static_loop.volume_linear = lerpf(0, 1.0, volume_clamped)
 	
 	if Input.is_action_just_pressed("lock_line"):
 		_try_lock_line()
@@ -98,6 +106,7 @@ func get_angle_diff_abs() -> float:
 	return abs(_angle_to_target())
 
 func get_scan_thickness() -> float:
+	# TODO: refactor this if I get a chance, it's gotten messy, see canvas.gd
 	var diff_deg := rad_to_deg(get_angle_diff_abs())
 	var t := 1.0 - clampf(diff_deg / thickness_falloff_angle, 0.0, 1.0)
 	return lerpf(min_line_thickness, max_line_thickness, t)
