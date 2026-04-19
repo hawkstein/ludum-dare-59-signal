@@ -7,6 +7,7 @@ extends Node2D
 @onready var triangulation_map: TriangulationMap = $MapLayer/TriangulationMap
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 @onready var message_layer: MessageLayer = $MessageLayer
+@onready var spawn_timer: Timer = $SpawnTimer
 
 const MAN_IN_BLACK = preload("uid://d2ag0ing1neyp")
 const TRANSMITTER = preload("uid://c7v1iqui8bx7a")
@@ -70,6 +71,7 @@ func _on_transmitter_found() -> void:
 	if _transmitters_found >= target_to_find:
 		call_deferred("_switch_to_win")
 	else:
+		spawn_timer.wait_time = 3.5 - _transmitters_found
 		_transmitter_location = _next_transmitter_location()
 		triangulation_map.clear()
 		var info := {"num_transmitters": target_to_find - _transmitters_found}
@@ -88,9 +90,9 @@ func _on_spawn_timer_timeout() -> void:
 		add_child(mib)
 		mib.position = mib_position
 		mib.add_to_group("mib")
-		print("spawned man in black")
-	else:
-		print("could not find spawn position for mib")
+		#print("spawned man in black")
+	#else:
+		#print("could not find spawn position for mib")
 
 func _find_spawn_position(
 ) -> Vector2:

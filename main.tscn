@@ -71,7 +71,7 @@ visible = false
 [node name="MessageLayer" parent="." unique_id=1599695556 instance=ExtResource("6_7mycd")]
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=591964598 groups=["mib"]]
-wait_time = 3.0
+wait_time = 4.0
 autostart = true
 
 [connection signal="map_closed" from="MapLayer/TriangulationMap" to="." method="_on_triangulation_map_map_closed"]
