@@ -2,7 +2,9 @@ class_name TriangulationMap
 extends Control
 
 signal signal_triangulated()
-signal map_closed()
+signal map_closed(success:bool)
+signal scan_too_close()
+signal signal_too_weak()
 
 @export var rotate_speed: float = 90.0
 @export var lock_angle_threshold: float = 8.0
@@ -17,6 +19,7 @@ var _required_lines: int = 3
 var _current_angle: float = 0.0
 var _locked_lines: Array[Dictionary] = []
 var _active: bool = false
+var _too_close: bool = false
 
 @onready var canvas: Control = $MarginContainer/Panel/Canvas
 @onready var receiver: Sprite2D = $MarginContainer/Panel/Receiver
@@ -38,11 +41,29 @@ func show_map(_target:Vector2, _player:Vector2, direction:Vector2i) -> void:
 	_current_angle = Vector2(direction).angle()
 	receiver.rotation = _current_angle
 	_active = true
+	_too_close = false
 	set_process(true)
 	canvas.queue_redraw()
 	if _locked_lines.size() < _required_lines:
-		static_loop.play()
+		if is_point_too_close(_receiver_map_position):
+			_too_close = true
+			scan_too_close.emit()
+		else:
+			static_loop.play()
 
+func is_point_too_close(point: Vector2) -> bool:
+	var min_dist := 50.0
+	for line in _locked_lines:
+		var origin: Vector2 = line.origin
+		if point.distance_to(origin) < min_dist:
+			return true
+		var max_length := 500.0
+		var end: Vector2 = origin + line.direction * max_length
+		var closest: Vector2 = Geometry2D.get_closest_point_to_segment(point, origin, end)
+		if point.distance_to(closest) < min_dist:
+			return true
+
+	return false
 
 func hide_map() -> void:
 	_active = false
@@ -50,7 +71,7 @@ func hide_map() -> void:
 	static_loop.stop()
 
 func _process(delta: float) -> void:
-	if not _active:
+	if not _active or _too_close:
 		return
 	
 	if _locked_lines.size() < _required_lines:
@@ -70,7 +91,10 @@ func _process(delta: float) -> void:
 		static_loop.volume_linear = lerpf(0, 1.0, volume_clamped)
 	
 	if Input.is_action_just_pressed("lock_line"):
-		_try_lock_line()
+		if transmitter.visible:
+			map_closed.emit(false)
+		else:	
+			_try_lock_line()
 
 func _try_lock_line() -> void:
 	if _locked_lines.size() >= _required_lines:
@@ -80,7 +104,7 @@ func _try_lock_line() -> void:
 	var diff := absf(angle_to_target)
 
 	if diff > deg_to_rad(lock_angle_threshold):
-		#TODO: add feedback that this doesn't work (tutorial message from character, sound)
+		signal_too_weak.emit()
 		return
 
 	var dir := Vector2.from_angle(_current_angle)
@@ -91,7 +115,7 @@ func _try_lock_line() -> void:
 		transmitter.visible = true
 		signal_triangulated.emit()
 	else:
-		map_closed.emit()
+		map_closed.emit(true)
 
 func _angle_to_target() -> float:
 	var to_target := (_target_map_position - _receiver_map_position).angle()

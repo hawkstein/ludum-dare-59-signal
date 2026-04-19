@@ -56,17 +56,19 @@ func _process(_delta: float) -> void:
 			player.start_moving()
 			triangulation_map.hide_map()
 
-func _on_triangulation_map_map_closed() -> void:
+func _on_triangulation_map_map_closed(success:bool) -> void:
 	map_layer.visible = false
 	player.start_moving()
 	triangulation_map.hide_map()
-
+	if success:
+		message_layer.display_message("Wolfgang: Scan line locked in!")
 
 func _on_triangulation_map_signal_triangulated() -> void:
 	var transmitter:Transmitter = TRANSMITTER.instantiate()
 	transmitter.position = _transmitter_location
 	transmitter.connect("transmitter_found", _on_transmitter_found)
 	add_child(transmitter)
+	message_layer.display_message("Darren: Let's find that transmitter!")
 
 func _on_transmitter_found() -> void:
 	_transmitters_found += 1
@@ -158,7 +160,7 @@ func _away_from_transmitter(mib_position: Vector2) -> bool:
 func _on_bounds_warning_body_entered(body: Node2D) -> void:
 	if body.has_method("reverse_direction"):
 		body.reverse_direction()
-		message_layer.display_message("Darren: You're heading out of town bud, turn around now!")
+		message_layer.display_message("Darren: You're heading out of town, turn around now!")
 
 
 func _on_message_timer_timeout() -> void:
@@ -166,3 +168,11 @@ func _on_message_timer_timeout() -> void:
 	current_message += 1
 	if current_message < intro_messages.size():
 		message_timer.start()
+
+
+func _on_triangulation_map_scan_too_close() -> void:
+	message_layer.display_message("Wolfgang: You need to scan further away from where you are now")
+
+
+func _on_triangulation_map_signal_too_weak() -> void:
+	message_layer.display_message("Darren: That signal's too weak, keep searching.")

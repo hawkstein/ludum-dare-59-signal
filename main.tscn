@@ -221,6 +221,8 @@ one_shot = true
 autostart = true
 
 [connection signal="map_closed" from="MapLayer/TriangulationMap" to="." method="_on_triangulation_map_map_closed"]
+[connection signal="scan_too_close" from="MapLayer/TriangulationMap" to="." method="_on_triangulation_map_scan_too_close"]
+[connection signal="signal_too_weak" from="MapLayer/TriangulationMap" to="." method="_on_triangulation_map_signal_too_weak"]
 [connection signal="signal_triangulated" from="MapLayer/TriangulationMap" to="." method="_on_triangulation_map_signal_triangulated"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="body_entered" from="BoundsWarning" to="." method="_on_bounds_warning_body_entered"]

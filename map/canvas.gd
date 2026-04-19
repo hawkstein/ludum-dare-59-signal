@@ -13,7 +13,7 @@ const SCAN_LINE_LENGTH := 1200.0
 func _draw() -> void:
 	_draw_locked_lines()
 
-	if not _map.is_complete():
+	if not _map.is_complete() and not _map._too_close:
 		_draw_scan_line()
 
 
