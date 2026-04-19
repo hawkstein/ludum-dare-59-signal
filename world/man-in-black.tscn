@@ -25,4 +25,13 @@ default_color = Color(0.8613717, 0.094879396, 0.34028402, 1)
 position = Vector2(0, -13)
 texture = ExtResource("2_vqdas")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=411430010]
+position = Vector2(0, -13)
+rect = Rect2(-80, -78, 160, 156)
+
+[node name="DespawnTimer" type="Timer" parent="." unique_id=465433856]
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]
