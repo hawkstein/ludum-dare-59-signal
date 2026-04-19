@@ -30,12 +30,13 @@ func clear() -> void:
 	_locked_lines.clear()
 	transmitter.visible = false
 
-func show_map(_target:Vector2, _player:Vector2) -> void:
+func show_map(_target:Vector2, _player:Vector2, direction:Vector2i) -> void:
 	receiver.position = _player
 	transmitter.position = _target
 	_target_map_position = _target
 	_receiver_map_position = _player
-	_current_angle = 0.0
+	_current_angle = Vector2(direction).angle()
+	receiver.rotation = _current_angle
 	_active = true
 	set_process(true)
 	canvas.queue_redraw()

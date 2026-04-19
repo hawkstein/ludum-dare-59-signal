@@ -44,8 +44,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("map"):
 		if not map_layer.visible:
 			map_layer.visible = true
+			triangulation_map.show_map(_remap_position(_transmitter_location, world_rect, mini_rect), _remap_position(player.position, world_rect, mini_rect), player.current_direction)
 			player.stop_moving()
-			triangulation_map.show_map(_remap_position(_transmitter_location, world_rect, mini_rect), _remap_position(player.position, world_rect, mini_rect))
 		else:
 			map_layer.visible = false
 			player.start_moving()
@@ -95,7 +95,7 @@ func _find_spawn_position(
 ) -> Vector2:
 	var viewport_rect := get_viewport().get_visible_rect()
 	var canvas_transform := get_canvas_transform()
-	var world_rect := Rect2(
+	var other_world_rect := Rect2(
 		-canvas_transform.origin / canvas_transform.get_scale(),
 		viewport_rect.size / canvas_transform.get_scale()
 	)
@@ -103,7 +103,7 @@ func _find_spawn_position(
 	var margin: float = 64.0
 	var max_attempts := 5
 	for _i in max_attempts:
-		var point := _point_in_front_of_player(world_rect, player.current_direction, margin)
+		var point := _point_in_front_of_player(other_world_rect, player.current_direction, margin)
 		var tile_coords := tile_map_layer.local_to_map(tile_map_layer.to_local(point))
 
 		if _tile_without_collision(tile_coords) and _away_from_transmitter(point):
