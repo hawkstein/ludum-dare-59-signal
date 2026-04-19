@@ -22,7 +22,7 @@ func _draw_locked_lines() -> void:
 		var origin: Vector2 = line_data["origin"]
 		var dir: Vector2 = line_data["direction"]
 		var end_pt := origin + dir * SCAN_LINE_LENGTH
-		draw_line(origin, end_pt, COLOR_LOCKED_LINE, 2.5, true)
+		draw_line(origin, end_pt, COLOR_LOCKED_LINE, 2.5)
 
 
 func _draw_scan_line() -> void:
@@ -39,4 +39,4 @@ func _draw_scan_line() -> void:
 		color = COLOR_SCAN_COLD.lerp(COLOR_SCAN_HOT, t)
 
 	var end_pt := origin + dir * SCAN_LINE_LENGTH
-	draw_line(origin, end_pt, color, thickness, true)
+	draw_line(origin, end_pt, color, thickness)
