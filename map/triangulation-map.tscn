@@ -51,6 +51,28 @@ texture = ExtResource("3_qu30w")
 visible = false
 texture = ExtResource("4_npiq4")
 
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/Panel" unique_id=27927480]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -242.0
+offset_right = 242.0
+offset_bottom = 33.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel/PanelContainer" unique_id=337651139]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/PanelContainer/MarginContainer" unique_id=1670149366]
+layout_mode = 2
+text = "Left and right to direct scan - Space to lock line, M closes map"
+
 [node name="StaticLoop" type="AudioStreamPlayer" parent="." unique_id=896589900]
 stream = ExtResource("5_npiq4")
 bus = &"SFX"
