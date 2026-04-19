@@ -53,6 +53,18 @@ sources/0 = SubResource("TileSetAtlasSource_0xm2m")
 pattern_0 = SubResource("TileMapPattern_1bvp3")
 pattern_1 = SubResource("TileMapPattern_lquwl")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(79, 3138)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(5135, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(32, 3045)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(5064, 32)
+
 [node name="Main" type="Node2D" unique_id=1983751229]
 script = ExtResource("1_7mycd")
 
@@ -74,6 +86,28 @@ visible = false
 wait_time = 4.0
 autostart = true
 
+[node name="BoundsWarning" type="Area2D" parent="." unique_id=2089537834]
+position = Vector2(-2440, -1302)
+collision_layer = 0
+
+[node name="East" type="CollisionShape2D" parent="BoundsWarning" unique_id=851841775]
+position = Vector2(32, 1559)
+shape = SubResource("RectangleShape2D_lquwl")
+
+[node name="North" type="CollisionShape2D" parent="BoundsWarning" unique_id=382575923]
+position = Vector2(2562.5, 6)
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="West" type="CollisionShape2D" parent="BoundsWarning" unique_id=507026784]
+position = Vector2(5143, 1512.5)
+scale = Vector2(0.9979622, 1)
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="South" type="CollisionShape2D" parent="BoundsWarning" unique_id=1970526961]
+position = Vector2(2603, 3045)
+shape = SubResource("RectangleShape2D_5vw27")
+
 [connection signal="map_closed" from="MapLayer/TriangulationMap" to="." method="_on_triangulation_map_map_closed"]
 [connection signal="signal_triangulated" from="MapLayer/TriangulationMap" to="." method="_on_triangulation_map_signal_triangulated"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="body_entered" from="BoundsWarning" to="." method="_on_bounds_warning_body_entered"]

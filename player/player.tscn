@@ -105,3 +105,6 @@ position = Vector2(0, 13)
 
 [node name="DownMarker" type="Marker2D" parent="." unique_id=389654397]
 position = Vector2(0, -2)
+
+[node name="IgnoreTimer" type="Timer" parent="." unique_id=363909351]
+wait_time = 0.5

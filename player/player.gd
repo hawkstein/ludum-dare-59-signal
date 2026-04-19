@@ -9,12 +9,14 @@ extends CharacterBody2D
 @onready var right_marker: Marker2D = $RightMarker
 @onready var up_marker: Marker2D = $UpMarker
 @onready var down_marker: Marker2D = $DownMarker
+@onready var ignore_timer: Timer = $IgnoreTimer
 
 var speed := 1.0
 var current_direction:= Vector2i.ZERO
 var desired_direction:= Vector2i.ZERO
 
 var active := true
+var _ignore_input :=false
 
 func _physics_process(_delta: float) -> void:
 	if not active:
@@ -26,6 +28,8 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _read_input() -> void:
+	if _ignore_input:
+		return
 	var input_direction := false
 	if Input.is_action_just_pressed("up"):
 		desired_direction = Vector2i.UP
@@ -81,6 +85,15 @@ func _update_particles() -> void:
 		dust_particles.position = right_marker.position
 	elif current_direction == Vector2i.DOWN:
 		dust_particles.position = down_marker.position
+
+func reverse_direction() -> void:
+	desired_direction = -desired_direction
+	current_direction = -current_direction
+	speed = 1.0
+	_ignore_input = true
+	ignore_timer.start()
+	await ignore_timer.timeout
+	_ignore_input = false
 
 func reset() -> void:
 #	TODO: clear any data for this attempt

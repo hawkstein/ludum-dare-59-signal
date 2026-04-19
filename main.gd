@@ -152,3 +152,8 @@ func _tile_without_collision(coords: Vector2i) -> bool:
 func _away_from_transmitter(mib_position: Vector2) -> bool:
 	var min_distance := 96 # 64 radius of mib + 1 tile 32px
 	return _transmitter_location.distance_to(mib_position) > min_distance
+
+func _on_bounds_warning_body_entered(body: Node2D) -> void:
+	if body.has_method("reverse_direction"):
+		body.reverse_direction()
+		message_layer.display_message("Darren: You're heading out of town bud, turn around now!")
