@@ -8,6 +8,7 @@ extends Node2D
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 @onready var message_layer: MessageLayer = $MessageLayer
 @onready var spawn_timer: Timer = $SpawnTimer
+@onready var message_timer: Timer = $MessageTimer
 
 const MAN_IN_BLACK = preload("uid://d2ag0ing1neyp")
 const TRANSMITTER = preload("uid://c7v1iqui8bx7a")
@@ -17,10 +18,14 @@ var _transmitters_found := 0
 var world_rect := Rect2(-2336, -1248, 4960, 2912)
 var mini_rect := Rect2(0, 0, 600, 320)
 
+var intro_messages := ["Wolfgang: Find the alien transmissions", "Wolfgang: Triangulate the signals on the map (Press M)", "Darren: and watch out for the men in black!"]
+var current_message := 0
+
 func _ready() -> void:
 	map_layer.visible = false
 	_transmitter_location = _next_transmitter_location()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	message_layer.display_message("Wolfgang: Ben come in! This is Wolfgang, over.")
 
 func _next_transmitter_location() -> Vector2:
 	var location:Vector2 = Vector2.ZERO
@@ -154,3 +159,10 @@ func _on_bounds_warning_body_entered(body: Node2D) -> void:
 	if body.has_method("reverse_direction"):
 		body.reverse_direction()
 		message_layer.display_message("Darren: You're heading out of town bud, turn around now!")
+
+
+func _on_message_timer_timeout() -> void:
+	message_layer.display_message(intro_messages[current_message])
+	current_message += 1
+	if current_message < intro_messages.size():
+		message_timer.start()

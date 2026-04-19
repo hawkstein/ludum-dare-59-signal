@@ -3,6 +3,13 @@
 [ext_resource type="Script" uid="uid://bd2h6drtkfwaw" path="res://messages/message_layer.gd" id="1_ljpr0"]
 [ext_resource type="AudioStream" uid="uid://bxhvpx8iq74mi" path="res://messages/push-to-talk.mp3" id="2_dk8ru"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk8ru"]
+bg_color = Color(0.060530342, 0.060530365, 0.060530297, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
 [node name="MessageLayer" type="CanvasLayer" unique_id=1599695556]
 script = ExtResource("1_ljpr0")
 
@@ -24,6 +31,7 @@ alignment = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=335558199]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dk8ru")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer" unique_id=1271445250]
 layout_mode = 2
@@ -34,7 +42,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=12299206]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 
 [node name="MessageLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1987453344]
 unique_name_in_owner = true

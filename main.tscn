@@ -215,7 +215,13 @@ shape = SubResource("RectangleShape2D_5vw27")
 stream = ExtResource("6_272bh")
 autoplay = true
 
+[node name="MessageTimer" type="Timer" parent="." unique_id=1452858022]
+wait_time = 6.5
+one_shot = true
+autostart = true
+
 [connection signal="map_closed" from="MapLayer/TriangulationMap" to="." method="_on_triangulation_map_map_closed"]
 [connection signal="signal_triangulated" from="MapLayer/TriangulationMap" to="." method="_on_triangulation_map_signal_triangulated"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="body_entered" from="BoundsWarning" to="." method="_on_bounds_warning_body_entered"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
