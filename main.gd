@@ -14,6 +14,8 @@ const TRANSMITTER = preload("uid://c7v1iqui8bx7a")
 
 var _transmitter_location := Vector2.ZERO
 var _transmitters_found := 0
+var world_rect := Rect2(-2336, -1248, 4960, 2912)
+var mini_rect := Rect2(0, 0, 600, 320)
 
 func _ready() -> void:
 	map_layer.visible = false
@@ -23,11 +25,10 @@ func _ready() -> void:
 func _next_transmitter_location() -> Vector2:
 	var location:Vector2 = Vector2.ZERO
 	while location == Vector2.ZERO:
-		var rect := Rect2(-2336, -1248, 4960, 2912)
 		# TODO: do the rect calc properly
 		var random_point := Vector2(
-			randf_range(rect.position.x, rect.end.x),
-			randf_range(rect.position.y, rect.end.y)
+			randf_range(world_rect.position.x, world_rect.end.x),
+			randf_range(world_rect.position.y, world_rect.end.y)
 		)
 		var tile_coords := tile_map_layer.local_to_map(tile_map_layer.to_local(random_point))
 		if _tile_without_collision(tile_coords):
@@ -35,24 +36,16 @@ func _next_transmitter_location() -> Vector2:
 	return location
 
 	
-func world_to_map(world_pos: Vector2) -> Vector2:
-	var used_rect := tile_map_layer.get_used_rect()
-	var tile_size := tile_map_layer.tile_set.tile_size
-
-	# World bounds of the tilemap
-	var origin := Vector2(used_rect.position * tile_size)
-	var extent := Vector2(used_rect.size * tile_size)
-
-	var normalized := (world_pos - origin) / extent
-	# 600x320 current estimate of map
-	return normalized * Vector2(600, 320)
+func _remap_position(pos: Vector2, from: Rect2, to: Rect2) -> Vector2:
+	var normalized := (pos - from.position) / from.size
+	return to.position + normalized * to.size
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("map"):
 		if not map_layer.visible:
 			map_layer.visible = true
 			player.stop_moving()
-			triangulation_map.show_map(world_to_map(_transmitter_location), world_to_map(player.position))
+			triangulation_map.show_map(_remap_position(_transmitter_location, world_rect, mini_rect), _remap_position(player.position, world_rect, mini_rect))
 		else:
 			map_layer.visible = false
 			player.start_moving()
