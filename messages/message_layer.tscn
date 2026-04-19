@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bq55n43thac71"]
 
 [ext_resource type="Script" uid="uid://bd2h6drtkfwaw" path="res://messages/message_layer.gd" id="1_ljpr0"]
+[ext_resource type="AudioStream" uid="uid://bxhvpx8iq74mi" path="res://messages/push-to-talk.mp3" id="2_dk8ru"]
 
 [node name="MessageLayer" type="CanvasLayer" unique_id=1599695556]
 script = ExtResource("1_ljpr0")
@@ -40,3 +41,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
 text = "Example message goes here"
+
+[node name="PushToTalkPlayer" type="AudioStreamPlayer" parent="." unique_id=40393126]
+stream = ExtResource("2_dk8ru")
+bus = &"SFX"
