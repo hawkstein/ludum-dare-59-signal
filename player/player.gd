@@ -68,7 +68,16 @@ func _update_sprite() -> void:
 		animated_sprite.flip_h = false
 	elif current_direction == Vector2i.DOWN:
 		animated_sprite.play("down")
-	# noop: If we've stopped (ZERO), stay the same
+	elif current_direction == Vector2i.ZERO:
+		var current_anim := animated_sprite.animation
+		if current_anim.ends_with("_idle"):
+			return
+		if current_anim == "up":
+			animated_sprite.play("up_idle")
+		elif current_anim == "down":
+			animated_sprite.play("down_idle")
+		else:
+			animated_sprite.play("sideways_idle")
 
 func _update_particles() -> void:
 	if speed >= 2.0:
